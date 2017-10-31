@@ -1,0 +1,20 @@
+<project name="time" basedir="." default="gogogo">
+    
+    <property name="lin.host" value="192.168.149.134"/>
+    <property name="lin.name" value="soojung"/>
+    <property name="lin.pswd" value="0828"/>
+    <property name="lin.basedir" value="Downloads"/>
+    <tstamp/>
+    <target name="gogogo" depends="deleteDir">
+       <echo>${TODAY}</echo>
+        <echo message="${DSTAMP}"/>
+        <echo message="${TSTAMP}"/>
+    </target>
+    <target name="deleteDir" depends="connectLinux">
+        <sshexec host="${lin.host}" username="${lin.name}" password="${lin.pswd}" trust="true" command="cd ${lin.basedir};rm -rf jboss-eap-5.2;ls"/>
+    </target>
+    <target name="connectLinux">
+        <sshexec host="${lin.host}" username="${lin.name}" password="${lin.pswd}" trust="true" command="cd ${lin.basedir};ls"/>
+    </target>
+    
+</project>
